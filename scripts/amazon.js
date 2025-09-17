@@ -1,6 +1,7 @@
 import { products } from "../data/products.js";
 import { cart, addToCart } from "./cart.js";
 
+//making the HTML appear on the page
 let finalHtml = "";
 products.forEach((product) => {
   let html = ` <div class="product-container">
@@ -60,8 +61,10 @@ let cartNumberOfItems = 0;
 
 document.querySelectorAll(".add-to-cart-button").forEach((item) => {
   item.addEventListener("click", () => {
+    //add to cart
     const productId = item.dataset.kenan;
     addToCart(productId);
+    //updating the cart in the amazon page
     cartNumberOfItems++;
     document.querySelector(".cart-quantity").innerHTML = cartNumberOfItems;
   });
