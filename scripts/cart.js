@@ -20,3 +20,7 @@ export function addToCart(productId) {
     });
   }
 }
+
+export function deleteButton(Id) {
+  cart = cart.filter((cartItem) => cartItem.productId !== Id);
+}
