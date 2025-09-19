@@ -1,6 +1,8 @@
 import { products } from "../data/products.js";
-import { cart, addToCart } from "./cart.js";
+import { cart, addToCart, saveToStorage } from "./cart.js";
 import { formatCurrency } from "./utilites/price.js";
+
+saveToStorage();
 
 //making the HTML appear on the page
 let finalHtml = "";
