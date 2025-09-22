@@ -1,6 +1,10 @@
 import { cart, deleteButton } from "./cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utilites/price.js";
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+import deliveryTime from "../data/deliveryTime.js";
+
+const today = dayjs();
 
 let finalHtml = "";
 cart.forEach((item) => {
@@ -13,7 +17,7 @@ cart.forEach((item) => {
   });
 
   let html = `<div class="cart-item-container container${matchingProduct.id}" >
-            <div class="delivery-date">Delivery date: Tuesday, June 21</div>
+            <div class="delivery-date">Delivery date: </div>
 
             <div class="cart-item-details-grid">
               <img
@@ -25,7 +29,7 @@ cart.forEach((item) => {
                 <div class="product-name">
                   ${matchingProduct.name}
                 </div>
-                <div class="product-price">$${formatCurrency(
+                <div class="product-price">${formatCurrency(
                   matchingProduct.priceCents
                 )}</div>
                 <div class="product-quantity">
@@ -42,50 +46,49 @@ cart.forEach((item) => {
                   </span>
                 </div>
               </div>
+              <div class="delivery-options-title">
+              <div class="hey">
+                Choose a delivery option:
+              </div>
+                   ${Time(ProductId)}
+                </div>
 
-              <div class="delivery-options">
-                <div class="delivery-options-title">
-                  Choose a delivery option:
-                </div>
-                <div class="delivery-option">
-                  <input
-                    type="radio"
-                    checked
-                    class="delivery-option-input"
-                    name="delivery-option-${item.productId}"
-                  />
-                  <div>
-                    <div class="delivery-option-date">Tuesday, June 21</div>
-                    <div class="delivery-option-price">FREE Shipping</div>
-                  </div>
-                </div>
-                <div class="delivery-option">
-                  <input
-                    type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${item.productId}"
-                  />
-                  <div>
-                    <div class="delivery-option-date">Wednesday, June 15</div>
-                    <div class="delivery-option-price">$4.99 - Shipping</div>
-                  </div>
-                </div>
-                <div class="delivery-option">
-                  <input
-                    type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${item.productId}"
-                  />
-                  <div>
-                    <div class="delivery-option-date">Monday, June 13</div>
-                    <div class="delivery-option-price">$9.99 - Shipping</div>
-                  </div>
-                </div>
+            
               </div>
             </div>
           </div>`;
   finalHtml += html;
 });
+function Time(ProductId) {
+  let finalHtmlTime = "";
+  deliveryTime.forEach((itemTime, index) => {
+    const checked = index === 0 ? "checked" : "";
+    let finaltime = today.add(itemTime.deliveryWait, "day");
+    let timeFormat = finaltime.format("dddd , MMM DD");
+    let finalTimeMoney =
+      itemTime.priceCents === 0
+        ? "FREE SHIPPING"
+        : formatCurrency(itemTime.priceCents);
+
+    let final = ` 
+                
+                <div class="delivery-option">
+                  <input
+                    type="radio"
+                    ${checked}
+                    class="delivery-option-input"
+                    name="delivery-option-${ProductId}"
+                  />
+                  <div>
+                    <div class="delivery-option-date">${timeFormat}</div>
+                    <div class="delivery-option-price">${finalTimeMoney}</div>
+                  </div>  
+                </div>
+                `;
+    finalHtmlTime += final;
+  });
+  return finalHtmlTime;
+}
 
 document.querySelector(".order-summary").innerHTML = finalHtml;
 document.querySelectorAll(".delete-quantity-link").forEach((link) => {

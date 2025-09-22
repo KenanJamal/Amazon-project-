@@ -1,4 +1,4 @@
-export let cart = JSON.parse(localStorage.getItem("cart"));
+let cart = JSON.parse(localStorage.getItem("cart"));
 if (!cart) {
   cart = [
     {
@@ -12,10 +12,10 @@ if (!cart) {
   ];
 }
 
-export function saveToStorage() {
+function saveToStorage() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
-export function addToCart(productId) {
+function addToCart(productId) {
   let matchingItem = cart?.filter((item) => item.productId === productId);
   if (matchingItem.length > 0) {
     matchingItem[0].quantity++;
@@ -28,7 +28,9 @@ export function addToCart(productId) {
   saveToStorage();
 }
 
-export function deleteButton(Id) {
+function deleteButton(Id) {
   cart = cart.filter((cartItem) => cartItem.productId !== Id);
   saveToStorage();
 }
+
+export { cart, deleteButton, saveToStorage, addToCart };
