@@ -17,7 +17,9 @@ cart.forEach((item) => {
   });
 
   let html = `<div class="cart-item-container container${matchingProduct.id}" >
-            <div class="delivery-date">Delivery date: </div>
+            <div class="delivery-date">Delivery Date: ${today
+              .add(7, "day")
+              .format("dddd, MMM DD")}</div>
 
             <div class="cart-item-details-grid">
               <img
@@ -39,7 +41,7 @@ cart.forEach((item) => {
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span  data-Delete-Button ="${
+                  <span  data-delete-button ="${
                     matchingProduct.id
                   }" class="delete-quantity-link link-primary">
                     Delete
@@ -64,7 +66,7 @@ function Time(ProductId) {
   deliveryTime.forEach((itemTime, index) => {
     const checked = index === 0 ? "checked" : "";
     let finaltime = today.add(itemTime.deliveryWait, "day");
-    let timeFormat = finaltime.format("dddd , MMM DD");
+    let timeFormat = finaltime.format("dddd, MMM DD");
     let finalTimeMoney =
       itemTime.priceCents === 0
         ? "FREE SHIPPING"
@@ -78,6 +80,7 @@ function Time(ProductId) {
                     ${checked}
                     class="delivery-option-input"
                     name="delivery-option-${ProductId}"
+                    data-thewait = "${itemTime.deliveryWait}"
                   />
                   <div>
                     <div class="delivery-option-date">${timeFormat}</div>
@@ -97,5 +100,15 @@ document.querySelectorAll(".delete-quantity-link").forEach((link) => {
     deleteButton(deleteItem);
     let container = document.querySelector(`.container${deleteItem}`);
     container.remove();
+  });
+});
+
+document.querySelectorAll(".delivery-option-input").forEach((item) => {
+  item.addEventListener("change", () => {
+    let thewait = parseInt(item.dataset.thewait);
+    let mahmod = today.add(thewait, "day").format("dddd, MMM DD");
+    const container = item.closest(".cart-item-container");
+    const deliveryDateElement = container.querySelector(".delivery-date");
+    deliveryDateElement.innerHTML = `Delivery Date: ${mahmod}`;
   });
 });
