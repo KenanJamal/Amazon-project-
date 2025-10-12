@@ -25,6 +25,7 @@ function addToCart(productId) {
     cart.push({
       productId: productId,
       quantity: 1,
+      deliveryOptionId: "1",
     });
   }
   saveToStorage();
@@ -34,5 +35,15 @@ function deleteButton(Id) {
   cart = cart.filter((cartItem) => cartItem.productId !== Id);
   saveToStorage();
 }
+function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem;
+  cart.forEach((element) => {
+    if (productId === element.productId) {
+      matchingItem = element;
+    }
+  });
+  matchingItem.deliveryOptionId = deliveryOptionId;
+  saveToStorage();
+}
 
-export { cart, deleteButton, saveToStorage, addToCart };
+export { cart, deleteButton, saveToStorage, addToCart, updateDeliveryOption };
