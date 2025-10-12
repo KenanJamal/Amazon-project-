@@ -15,11 +15,14 @@ cart.forEach((item) => {
       matchingProduct = product;
     }
   });
-
+  const selectedOption = deliveryTime.find(
+    (element) => element.id === item.deliveryOptionId
+  );
+  const deliveryDate = today
+    .add(selectedOption.deliveryWait || 7, "day")
+    .format("dddd, MMM DD");
   let html = `<div class="cart-item-container container${matchingProduct.id}" >
-            <div class="delivery-date">Delivery Date: ${today
-              .add(7, "day")
-              .format("dddd, MMM DD")}</div>
+            <div class="delivery-date">Delivery Date: ${deliveryDate}</div>
 
             <div class="cart-item-details-grid">
               <img
@@ -105,15 +108,6 @@ document.querySelectorAll(".delete-quantity-link").forEach((link) => {
   });
 });
 
-document.querySelectorAll(".delivery-option-input").forEach((item) => {
-  item.addEventListener("change", () => {
-    let thewait = parseInt(item.dataset.thewait);
-    let theFinalFormat = today.add(thewait, "day").format("dddd, MMM DD");
-    const container = item.closest(".cart-item-container");
-    const deliveryDateElement = container.querySelector(".delivery-date");
-    deliveryDateElement.innerHTML = `Delivery Date: ${theFinalFormat}`;
-  });
-});
 document.querySelectorAll(".js-delivery-option").forEach((element) => {
   element.addEventListener("click", () => {
     let { productId, deliveryOptionId } = element.dataset;

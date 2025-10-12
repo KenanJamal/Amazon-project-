@@ -64,10 +64,8 @@ let cartNumberOfItems = 0;
 
 document.querySelectorAll(".add-to-cart-button").forEach((item) => {
   item.addEventListener("click", () => {
-    //add to cart
     const productId = item.dataset.kenan;
     addToCart(productId);
-    //updating the cart in the amazon page
     cartNumberOfItems++;
     document.querySelector(".cart-quantity").innerHTML = cartNumberOfItems;
   });
