@@ -3,7 +3,7 @@ import { getProduct } from "../../data/products.js";
 import { deliveryTime } from "../../data/deliveryTime.js";
 import { formatCurrency } from "../utilites/price.js";
 
-function renderPaymentSummary() {
+export function renderPaymentSummary() {
   let productPriceCent = 0;
   let matchingProduct;
   let ShippingPrice = [];
