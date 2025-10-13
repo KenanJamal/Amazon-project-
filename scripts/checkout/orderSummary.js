@@ -1,20 +1,16 @@
-import { cart, deleteButton, updateDeliveryOption } from "./cart.js";
-import { products } from "../data/products.js";
-import { formatCurrency } from "./utilites/price.js";
+import { cart, deleteButton, updateDeliveryOption } from "../cart.js";
+import { products, getProduct } from "../../data/products.js";
+import { formatCurrency } from "../utilites/price.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-import deliveryTime from "../data/deliveryTime.js";
+import { deliveryTime } from "../../data/deliveryTime.js";
 
 const today = dayjs();
 
 let finalHtml = "";
 cart.forEach((item) => {
   const ProductId = item.productId;
-  let matchingProduct = "";
-  products.forEach((product) => {
-    if (product.id === ProductId) {
-      matchingProduct = product;
-    }
-  });
+  let matchingProduct = getProduct(ProductId);
+
   const selectedOption = deliveryTime.find(
     (element) => element.id === item.deliveryOptionId
   );
@@ -85,7 +81,7 @@ function Time(ProductId) {
                     class="delivery-option-input"
                     value = "${deliveryId}"
                     name="delivery-option-${ProductId}"
-                    data-thewait = "${itemTime.deliveryWait}"
+                    data-thewait = ${itemTime.deliveryWait}
                   />
                   <div>
                     <div class="delivery-option-date">${timeFormat}</div>
@@ -105,6 +101,18 @@ document.querySelectorAll(".delete-quantity-link").forEach((link) => {
     deleteButton(deleteItem);
     let container = document.querySelector(`.container${deleteItem}`);
     container.remove();
+  });
+});
+document.querySelectorAll(".delivery-option-input").forEach((input) => {
+  input.addEventListener("change", () => {
+    const parent = input.closest(".js-delivery-option");
+    const { productId, deliveryOptionId } = parent.dataset;
+    updateDeliveryOption(productId, deliveryOptionId);
+    const waitDays = input.dataset.thewait;
+    const newDate = today.add(waitDays, "day").format("dddd, MMM DD");
+    const container = input.closest(".cart-item-container");
+    const deliveryDateElement = container.querySelector(".delivery-date");
+    deliveryDateElement.innerHTML = `Delivery Date: ${newDate}`;
   });
 });
 

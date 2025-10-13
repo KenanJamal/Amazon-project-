@@ -1,4 +1,4 @@
-const deliveryTime = [
+export const deliveryTime = [
   {
     id: "1",
     deliveryWait: 7,
@@ -16,4 +16,4 @@ const deliveryTime = [
   },
 ];
 
-export default deliveryTime;
+// export default deliveryTime;
