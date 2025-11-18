@@ -1,20 +1,18 @@
-// class Products {
-//   id;
-//   image;
-//   name;
-//   rating;
-//   priceCents;
+class Products {
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
 
-//   constructor(protductDetails) {
-//     this.id = protductDetails.id;
-//     this.image = protductDetails.image;
-//     this.name = protductDetails.name;
-//     this.rating = protductDetails.rating;
-//     this.priceCents = protductDetails.priceCents;
-//   }
-
-//   getStart() {}
-// }
+  constructor(protductDetails) {
+    this.id = protductDetails.id;
+    this.image = protductDetails.image;
+    this.name = protductDetails.name;
+    this.rating = protductDetails.rating;
+    this.priceCents = protductDetails.priceCents;
+  }
+}
 
 export const products = [
   {
@@ -487,10 +485,10 @@ export const products = [
     priceCents: 2400,
     keywords: ["sweaters", "hoodies", "apparel", "mens"],
   },
-];
+].map((items) => {
+  return new Products(items);
+});
 
-// ].map((protductDetails) => {
-//   return new Products(protductDetails);
 export function getProduct(ProductId) {
   let matchingProduct;
   products.forEach((product) => {

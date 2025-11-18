@@ -1,9 +1,8 @@
-function Cart(localStoragekey) {
+function Cart(key) {
   const cart = {
     cartItems: undefined,
-
     loadFromStorage() {
-      this.cartItems = JSON.parse(localStorage.getItem(localStoragekey));
+      this.cartItems = JSON.parse(localStorage.getItem(key));
       if (!this.cartItems) {
         this.cartItems = [
           {
@@ -21,7 +20,7 @@ function Cart(localStoragekey) {
     },
 
     saveToStorage() {
-      localStorage.setItem(localStoragekey, JSON.stringify(this.cartItems));
+      localStorage.setItem(key, JSON.stringify(this.cartItems));
     },
     addToCart(productId) {
       let matchingItem = this.cartItems?.find(
@@ -59,8 +58,3 @@ function Cart(localStoragekey) {
   };
   return cart;
 }
-let cart = Cart("cart-oop");
-cart.loadFromStorage();
-console.log(cart);
-
-// export { cart, deleteButton, saveToStorage, addToCart, updateDeliveryOption };

@@ -1,5 +1,5 @@
 import { products } from "../data/products.js";
-import { addToCart } from "./cart.js";
+import { addToCart } from "./carts/cart.js";
 import { formatCurrency } from "./utilites/price.js";
 
 //making the HTML appear on the page
