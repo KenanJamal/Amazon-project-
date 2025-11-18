@@ -1,3 +1,4 @@
+import { getProduct } from "../data/products.js";
 let cart = JSON.parse(localStorage.getItem("cart"));
 if (!cart) {
   cart = [
@@ -9,7 +10,7 @@ if (!cart) {
     {
       productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
       quantity: 2,
-      deliveryOptionId: "2",
+      deliveryOptionId: "1",
     },
   ];
 }

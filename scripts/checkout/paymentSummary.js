@@ -9,13 +9,12 @@ export function renderPaymentSummary() {
   let ShippingPrice = [];
 
   cart.forEach((item) => {
-    const ProductId = item.productId;
-    matchingProduct = getProduct(ProductId);
+    const productId = item.productId;
+    matchingProduct = getProduct(productId);
     productPriceCent += matchingProduct.priceCents * item.quantity;
     const selectedOption = deliveryTime.find(
       (element) => element.id === item.deliveryOptionId
     );
-
     ShippingPrice.push(selectedOption.priceCents);
   });
 
