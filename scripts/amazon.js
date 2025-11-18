@@ -42,7 +42,7 @@ function displayProducts() {
               <option value="10">10</option>
             </select>
           </div>
-
+          ${product.extrainfo()}
           <div class="product-spacer"></div>
 
           <div class="added-to-cart">

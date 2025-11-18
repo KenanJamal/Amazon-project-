@@ -12,8 +12,22 @@ class Products {
     this.rating = protductDetails.rating;
     this.priceCents = protductDetails.priceCents;
   }
+  extrainfo() {
+    return "";
+  }
 }
-
+class Clothing extends Products {
+  constructor(protductDetails) {
+    super(protductDetails);
+    this.sizeChartLink = protductDetails.sizeChartLink;
+  }
+  extrainfo() {
+    return `
+    <div>
+    <a target="_blank" href= "${this.sizeChartLink}">Sizes</a>
+    </div>`;
+  }
+}
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -48,7 +62,7 @@ export const products = [
     priceCents: 799,
     keywords: ["tshirts", "apparel", "mens"],
     type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png",
+    sizeChartLink: "../images/clothing-size-chart.png",
   },
   {
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
@@ -486,6 +500,9 @@ export const products = [
     keywords: ["sweaters", "hoodies", "apparel", "mens"],
   },
 ].map((items) => {
+  if (items.type === "clothing") {
+    return new Clothing(items);
+  }
   return new Products(items);
 });
 
