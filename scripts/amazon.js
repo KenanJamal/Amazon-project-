@@ -1,13 +1,12 @@
 import { products } from "../data/products.js";
-import { cart, addToCart, saveToStorage } from "./cart.js";
+import { addToCart } from "./cart.js";
 import { formatCurrency } from "./utilites/price.js";
 
-saveToStorage();
-
 //making the HTML appear on the page
-let finalHtml = "";
-products.forEach((product) => {
-  let html = ` <div class="product-container">
+function displayProducts() {
+  let finalHtml = "";
+  products.forEach((product) => {
+    let html = ` <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
               src="${product.image}">
@@ -57,16 +56,24 @@ products.forEach((product) => {
             Add to Cart
           </button>
         </div>`;
-  finalHtml += html;
-});
-document.querySelector(".products-grid").innerHTML = finalHtml;
-let cartNumberOfItems = 0;
-
-document.querySelectorAll(".add-to-cart-button").forEach((item) => {
-  item.addEventListener("click", () => {
-    const productId = item.dataset.kenan;
-    addToCart(productId);
-    cartNumberOfItems++;
-    document.querySelector(".cart-quantity").innerHTML = cartNumberOfItems;
+    finalHtml += html;
   });
-});
+  document.querySelector(".products-grid").innerHTML = finalHtml;
+}
+function displayAddToCart() {
+  let cartNumberOfItems = 0;
+  document.querySelectorAll(".add-to-cart-button").forEach((item) => {
+    item.addEventListener("click", () => {
+      const productId = item.dataset.kenan;
+      addToCart(productId);
+      cartNumberOfItems++;
+      document.querySelector(".cart-quantity").innerHTML = cartNumberOfItems;
+    });
+  });
+}
+
+function main() {
+  displayProducts();
+  displayAddToCart();
+}
+main();
