@@ -120,9 +120,8 @@ function changingInputs() {
     });
   });
 }
-function main() {
+export function mainSummary() {
   displayCartItems();
   deleteItem();
   changingInputs();
 }
-main();
