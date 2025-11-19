@@ -1,6 +1,6 @@
-let xhl = new XMLHttpRequest();
-xhl.addEventListener("load", () => {
-  console.log(xhl.response);
+let xhr = new XMLHttpRequest();
+xhr.addEventListener("load", () => {
+  console.log(xhr.response);
 });
-xhl.open("GET", "https://supersimplebackend.dev/images/apple.jpg");
-xhl.send();
+xhr.open("GET", "https://supersimplebackend.dev/images/apple.jpg");
+xhr.send();

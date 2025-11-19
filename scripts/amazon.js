@@ -1,8 +1,9 @@
-import { products } from "../data/products.js";
+import { products, loadProducts } from "../data/products.js";
 import { addToCart } from "./carts/cart.js";
 import { formatCurrency } from "./utilites/price.js";
 
 //making the HTML appear on the page
+
 function displayProducts() {
   let finalHtml = "";
   products.forEach((product) => {
@@ -72,8 +73,8 @@ function displayAddToCart() {
   });
 }
 
+loadProducts(main);
 function main() {
   displayProducts();
   displayAddToCart();
 }
-main();
