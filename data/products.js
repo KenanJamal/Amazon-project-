@@ -1,3 +1,4 @@
+export let products = [];
 class Products {
   id;
   image;
@@ -28,7 +29,6 @@ class Clothing extends Products {
     </div>`;
   }
 }
-export let products = [];
 
 export function loadProductsfetch() {
   let promise = fetch("https://supersimplebackend.dev/products")

@@ -1,4 +1,4 @@
-import { products, loadProducts } from "../data/products.js";
+import { products, loadProductsfetch } from "../data/products.js";
 import { addToCart } from "./carts/cart.js";
 import { formatCurrency } from "./utilites/price.js";
 
@@ -73,8 +73,9 @@ function displayAddToCart() {
   });
 }
 
-loadProducts(main);
-function main() {
+async function main() {
+  await loadProductsfetch();
   displayProducts();
   displayAddToCart();
 }
+main();
