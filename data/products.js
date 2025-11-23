@@ -42,6 +42,9 @@ export function loadProductsfetch() {
         }
         return new Products(items);
       });
+    })
+    .catch(() => {
+      console.log("error, please try again.");
     });
   return promise;
 }

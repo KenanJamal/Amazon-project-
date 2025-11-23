@@ -45,5 +45,4 @@ function updateDeliveryOption(productId, deliveryOptionId) {
   matchingItem.deliveryOptionId = deliveryOptionId;
   saveToStorage();
 }
-
 export { cart, deleteButton, saveToStorage, addToCart, updateDeliveryOption };
