@@ -91,7 +91,6 @@
   border-top: none;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-
   display: grid;
   grid-template-columns: 110px 1fr 220px;
   column-gap: 35px;

@@ -30,7 +30,9 @@ function displayOrders() {
            </div>
    
            <div class="product-actions">
-             <a href="tracking.html">
+             <a href="tracking.html?orderId=${element.id}&productId=${
+        product.productId
+      }">
                <button class="track-package-button button-secondary">
                  Track package
                </button>
@@ -38,6 +40,7 @@ function displayOrders() {
            </div>
        `;
     });
+
     let html1 = `<div class="order-container">
          <div class="order-header">
            <div class="order-header-left-section">
@@ -65,6 +68,5 @@ function displayOrders() {
 async function main() {
   await loadProductsfetch();
   displayOrders();
-  buyItAgain();
 }
 main();
