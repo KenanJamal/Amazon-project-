@@ -1,0 +1,37 @@
+# Mocked JS Website (Inspired by 22h Course)
+
+This project is my own take on the JavaScript website built in the [22‑hour JS course].  
+I followed the main concepts to solidify my understanding, then added extra features and improvements to make it my own.
+
+---
+
+## 🚀 Features
+- **Product Classes**: Base `Products` class with specialized `Clothing` subclass (size chart links).
+- **Dynamic Data**: Products fetched from API and instantiated into proper classes.
+- **Cart System**: Add, update, delete items with persistent storage in `localStorage`.
+- **Delivery Options**: Radio inputs update delivery dates and shipping costs in real time.
+- **DOM Manipulation**: Clean use of data attributes for event handling.
+
+---
+
+## 📂 Project Structure
+- `amazon.js` → Home page where users browse products and add them to the cart
+- `cart.js` → Handles adding, updating, deleting items in the cart and saving changes in localStorage
+- `checkout.js` → Displays cart items and payment summary
+- `order.js` → Shows the orders placed
+- `tracking.js` → Displays order tracking details using URL parameters
+
+---
+
+## ⚙️ Setup
+1. Clone the repo
+2. Open `index.html` in your browser
+3. Browse products, add to cart, and test checkout flow
+
+---
+
+## 🛠️ Technologies
+- JavaScript (ES6+)
+- HTML5
+- CSS3 / TailwindCSS
+- Day.js for date formatting
