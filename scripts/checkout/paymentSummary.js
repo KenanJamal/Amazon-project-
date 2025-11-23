@@ -85,7 +85,6 @@ export function renderPaymentSummary() {
         }),
       });
       const order = await response.json();
-      console.log("🚀 ~ renderPaymentSummary ~ order:", order);
       addToOrders(order);
       window.location.href = "orders.html";
     });

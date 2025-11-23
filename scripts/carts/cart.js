@@ -18,9 +18,14 @@ function saveToStorage() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 function addToCart(productId) {
-  let matchingItem = cart?.filter((item) => item.productId === productId);
-  if (matchingItem.length > 0) {
-    matchingItem[0].quantity++;
+  let matchingItem = cart.find((item) => {
+    if (item.productId === productId) {
+      return item.productId;
+    }
+  });
+
+  if (matchingItem) {
+    matchingItem.quantity++;
   } else {
     cart.push({
       productId: productId,

@@ -6,8 +6,8 @@ import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 
 function displayOrders() {
   let finalDisplay = "";
-  let html2 = "";
   orders.map((element) => {
+    let html2 = "";
     element.products.map((product) => {
       let matchingProduct = getProduct(product.productId);
       html2 += `

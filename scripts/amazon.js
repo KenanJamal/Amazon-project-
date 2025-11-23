@@ -1,5 +1,5 @@
 import { products, loadProductsfetch } from "../data/products.js";
-import { addToCart } from "./carts/cart.js";
+import { cart, addToCart } from "./carts/cart.js";
 import { formatCurrency } from "./utilites/price.js";
 
 //making the HTML appear on the page
@@ -63,6 +63,11 @@ function displayProducts() {
 }
 function displayAddToCart() {
   let cartNumberOfItems = 0;
+  cart.map((element) => {
+    cartNumberOfItems += element.quantity;
+  });
+
+  document.querySelector(".cart-quantity").innerHTML = cartNumberOfItems;
   document.querySelectorAll(".add-to-cart-button").forEach((item) => {
     item.addEventListener("click", () => {
       const productId = item.dataset.kenan;
