@@ -25,7 +25,7 @@ I followed the main concepts to solidify my understanding, then added extra feat
 
 ## ⚙️ Setup
 1. Clone the repo
-2. Open `index.html` in your browser
+2. Open `index.html` in your browser using live server
 3. Browse products, add to cart, and test checkout flow
 
 ---
